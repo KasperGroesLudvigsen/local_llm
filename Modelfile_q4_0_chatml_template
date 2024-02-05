@@ -1,0 +1,17 @@
+# See parameter options here: https://github.com/ollama/ollama/blob/main/docs/modelfile.md
+
+FROM munin-neuralbeagle-7b/munin-neuralbeagle-7b.Q4_0.gguf
+
+PARAMETER num_ctx 8000
+
+PARAMETER temperature 0.2
+
+PARAMETER seed 44
+
+TEMPLATE """<|im_start|>system {{ .System }}<|im_end|><|im_start|>user {{ .Prompt }}<|im_end|><|im_start|>assistant<|im_end|>"""
+
+PARAMETER stop [INST]
+PARAMETER stop [/INST]
+PARAMETER stop <|im_end|>
+PARAMETER stop <|im_start|>user
+PARAMETER stop <|end|>
